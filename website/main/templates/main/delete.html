@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+	Minimaxing by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Bugtracker - Minimaxing by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="{% static '\main\assets\css\main.css' %}" />
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <!-- Header -->
+      <div id="header-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <header id="header">
+              
+                <h1><a href="\main\" id="logo">Minimaxing</a></h1>
+                <nav id="nav">
+										<a href="\main\">Homepage</a>
+																				{% if latest_question_list %}
+ 									{% for question in latest_question_list %}
+  								<a href="{% url 'main:detail' question.id %}">Detail</a>
+  								{% endfor %}
+										{% endif %}
+										{% if latest_question_list %}
+ 									{% for question in latest_question_list %}
+  								<a href="{% url 'main:results' question.id %}">Results</a>
+  								{% endfor %}
+										{% endif %}
+										<a href="\main\bugtracker\">Bug Tracking</a>
+																				{% if user.is_authenticated %}
+										<b>Hello, {{user.first_name}}</b>
+										<a href="\accounts\logout\">Logout</a>
+										{% else %}
+										<a href="\accounts\login\">Login</a>
+										<a href="\accounts\register\">Register</a>
+										{% endif %}
+									</nav>
+              </header>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main -->
+      {% if user.is_authenticated %}
+      <div id="main">
+        <div class="container">
+          <div class="row main-row">
+            <div class="col-3 col-12-medium">
+              <section>
+
+              </section>
+
+              <section>
+
+
+              </section>
+            </div>
+            <div class="col-6 col-12-medium imp-medium">
+              <section class="middle-content">
+                <h2>BuGtRaCkEr</h2>
+
+                <p>Are you sure you want to delete "{{item}}"?</p>
+
+								<a href="{% url 'main:bugtracker' %}">Cancel?</a>
+                <br>
+                <br>
+                <form method="POST" action="">
+                  {% csrf_token %}
+                  <input type="submit" name="Confirm" value="DELETE">
+                </form>
+              </section>
+            </div>
+            <div class="col-3 col-12-medium">
+              <section>
+
+              </section>
+
+              <section>
+
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div id="footer-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-8 col-12-medium">
+              <section>
+                <h2>How about a truckload of links?</h2>
+                <div>
+                  <div class="row">
+                    <div class="col-3 col-6-medium col-12-small">
+                      <ul class="link-list">
+                        <li><a href="#">Sed neque nisi consequat</a></li>
+                        <li><a href="#">Dapibus sed mattis blandit</a></li>
+                        <li><a href="#">Quis accumsan lorem</a></li>
+                        <li><a href="#">Suspendisse varius ipsum</a></li>
+                        <li><a href="#">Eget et amet consequat</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                      <ul class="link-list">
+                        <li><a href="#">Quis accumsan lorem</a></li>
+                        <li><a href="#">Sed neque nisi consequat</a></li>
+                        <li><a href="#">Eget et amet consequat</a></li>
+                        <li><a href="#">Dapibus sed mattis blandit</a></li>
+                        <li><a href="#">Vitae magna sed dolore</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                      <ul class="link-list">
+                        <li><a href="#">Sed neque nisi consequat</a></li>
+                        <li><a href="#">Dapibus sed mattis blandit</a></li>
+                        <li><a href="#">Quis accumsan lorem</a></li>
+                        <li><a href="#">Suspendisse varius ipsum</a></li>
+                        <li><a href="#">Eget et amet consequat</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                      <ul class="link-list">
+                        <li><a href="#">Quis accumsan lorem</a></li>
+                        <li><a href="#">Sed neque nisi consequat</a></li>
+                        <li><a href="#">Eget et amet consequat</a></li>
+                        <li><a href="#">Dapibus sed mattis blandit</a></li>
+                        <li><a href="#">Vitae magna sed dolore</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="col-4 col-12-medium">
+              <section>
+                <h2>Something of interest</h2>
+                <p>
+                  Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed.
+                  Suspendisse eu varius nibh. Suspendisse vitae magna eget odio
+                  amet mollis justo facilisis quis. Sed sagittis mauris amet
+                  tellus gravida lorem ipsum dolor sit blandit.
+                </p>
+                <footer class="controls">
+                  <a href="#" class="button">Oh, please continue ....</a>
+                </footer>
+              </section>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div id="copyright">
+                &copy; Untitled. All rights reserved. | Design:
+                <a href="http://html5up.net">HTML5 UP</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+										{%else%}
+        <h2>Please
+								<a href="\accounts\login\">Login</a>&nbsp;Or&nbsp;
+							<a href="\accounts\register\">Register</a></h2>
+       {%endif%}
+    <!-- Scripts -->
+    <script src="{% static '\main\assets\js\jquery.min.js' %}"></script>
+    <script src="{% static '\main\assets\js\browser.min.js' %}"></script>
+    <script src="{% static '\main\assets\js\breakpoints.min.js' %}"></script>
+    <script src="{% static '\main\assets\js\util.js' %}"></script>
+    <script src="{% static '\main\assets\js\main.js' %}"></script>
+  </body>
+</html>
